@@ -11,13 +11,14 @@ function Signup() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
     setSuccess('');
 
-    axios.post(`${process.env.REACT_APP_API_URL}/api/register`, { name, email, password })
+    axios.post(`${apiUrl}/api/register`, { name, email, password })
       .then(result => {
         setSuccess('Registration successful! Redirecting to Quiz...');
         setTimeout(() => {
