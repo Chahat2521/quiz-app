@@ -18,7 +18,8 @@ const QuizQuestions = () => {
 
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/questions/${topic}`)
+   axios.get(`${process.env.REACT_APP_API_URL}/questions/${topic}`)
+
       .then(res => setQuestions(res.data))
       .catch(err => console.error("Error fetching questions", err));
   }, [topic]);
