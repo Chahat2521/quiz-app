@@ -20,7 +20,8 @@ const QuizQuestions = () => {
 
 
   useEffect(() => {
- axios.get(`${apiUrl}/questions/${topic}`)
+ axios
+    .get(`https://quiz-app-2-k34l.onrender.com/questions/${topic}`)
       .then(res => setQuestions(res.data))
       .catch(err => console.error("Error fetching questions", err));
   }, [topic]);
@@ -70,7 +71,8 @@ const QuizQuestions = () => {
   setQuizEnded(true);
 
   try {
-   await axios.post(`${process.env.REACT_APP_API_URL}/answers/submit`, {
+ await axios.post(`https://quiz-app-2-k34l.onrender.com/answers/submit`, {
+
 
    username: username,
 
