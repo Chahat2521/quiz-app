@@ -14,7 +14,7 @@ app.use(express.json());
 app.use('/questions', questionRoutes);
 app.use('/answers', answerRoute); 
 
-const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/local';
+const mongoUri = process.env.MONGO_URI || 'mongodb+srv://chahatchauhan1616:Chahat123456@cluster21.ls9c4hd.mongodb.net/quizDB?retryWrites=true&w=majority&appName=Cluster21';
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
