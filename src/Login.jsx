@@ -17,7 +17,7 @@ function Login() {
   const handleSubmit = (e) => {
   e.preventDefault();
   setError('');
-  axios.post('http://localhost:5000/api/login', { email, password })
+  axios.post(`${process.env.REACT_APP_API_URL}/api/login`, { email, password })
     .then(result => {
       setUser(result.data.user); // ✅ updates AuthContext
       localStorage.setItem("user", JSON.stringify(result.data.user)); // ✅ store once
