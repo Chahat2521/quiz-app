@@ -13,12 +13,13 @@ function Login() {
   const [error, setError] = useState('');
   const { setUser } = useContext(AuthContext);
   const navigate = useNavigate();
-  const apiUrl = process.env.REACT_APP_API_URL;
+ const apiUrl = 'https://quiz-app-2-k34l.onrender.com';
+
 
   const handleSubmit = (e) => {
   e.preventDefault();
   setError('');
-  axios.post(`${apiUrl}/api/login`, { email, password })
+  axios.post('https://quiz-app-2-k34l.onrender.com/api/login', { email, password })
     .then(result => {
       setUser(result.data.user); // ✅ updates AuthContext
       localStorage.setItem("user", JSON.stringify(result.data.user)); // ✅ store once
