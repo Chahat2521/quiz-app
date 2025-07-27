@@ -12,7 +12,8 @@ const QuizQuestions = () => {
   const [quizEnded, setQuizEnded] = useState(false);
   const [timer, setTimer] = useState(600);
   const intervalRef = useRef(null);
-  const apiUrl = process.env.REACT_APP_API_URL;
+ const apiUrl = 'https://quiz-app-2-k34l.onrender.com';
+
 
  const user = JSON.parse(localStorage.getItem('user')) || {};
    const username = user.name || 'Guest';
