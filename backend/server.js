@@ -8,23 +8,33 @@ const answerRoute = require('./routes/answerRoute');
 const app = express();
 const PORT = process.env.PORT || 10000;
 
-app.use(cors());
+// ✅ CORRECT CORS CONFIGURATION
+app.use(cors({
+  origin: 'https://quiz-app-ten-alpha-22.vercel.app', // your frontend domain
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
+
+// ✅ JSON parser must come AFTER cors
 app.use(express.json());
 
+// ✅ Use your route files
 app.use('/questions', questionRoutes);
 app.use('/answers', answerRoute); 
 
+// ✅ MongoDB connection
 const mongoUri = process.env.MONGO_URI || 'mongodb+srv://chahatchauhan1616:Chahat123@cluster21.ls9c4hd.mongodb.net/quizDB?retryWrites=true&w=majority&appName=Cluster21';
 mongoose.connect(mongoUri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => {
-  console.log('Connected to MongoDB local database');
+  console.log('Connected to MongoDB');
 }).catch((err) => {
   console.error('MongoDB connection error:', err);
   process.exit(1);
 });
 
+// ✅ User schema and model
 const userSchema = new mongoose.Schema({
   name: String,
   email: { type: String, unique: true },
@@ -33,6 +43,7 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
+// ✅ Register endpoint
 app.post('/api/register', async (req, res) => {
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
@@ -52,7 +63,7 @@ app.post('/api/register', async (req, res) => {
   }
 });
 
-// Login endpoint
+// ✅ Login endpoint
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -60,11 +71,7 @@ app.post('/api/login', async (req, res) => {
   }
   try {
     const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(401).json({ message: 'Invalid credentials' });
-    }
-    // Plain text password comparison
-    if (user.password !== password) {
+    if (!user || user.password !== password) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
     res.json({ user: { id: user._id, name: user.name, email: user.email } });
@@ -73,6 +80,8 @@ app.post('/api/login', async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
+
+// ✅ Root test route
 app.get("/", (req, res) => {
   res.send("Quiz backend is running!");
 });
