@@ -69,7 +69,8 @@ const QuizQuestions = () => {
   setQuizEnded(true);
 
   try {
-    await axios.post('http://localhost:5000/answers/submit', {
+   await axios.post(`${process.env.REACT_APP_API_URL}/answers/submit`, {
+
    username: username,
 
       topic,
