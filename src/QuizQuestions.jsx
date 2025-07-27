@@ -12,14 +12,14 @@ const QuizQuestions = () => {
   const [quizEnded, setQuizEnded] = useState(false);
   const [timer, setTimer] = useState(600);
   const intervalRef = useRef(null);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
  const user = JSON.parse(localStorage.getItem('user')) || {};
    const username = user.name || 'Guest';
 
 
   useEffect(() => {
-   axios.get(`${process.env.REACT_APP_API_URL}/questions/${topic}`)
-
+ axios.get(`${apiUrl}/questions/${topic}`)
       .then(res => setQuestions(res.data))
       .catch(err => console.error("Error fetching questions", err));
   }, [topic]);
