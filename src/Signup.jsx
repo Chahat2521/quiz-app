@@ -17,7 +17,7 @@ function Signup() {
     setError('');
     setSuccess('');
 
-    axios.post('http://localhost:5000/api/register', { name, email, password })
+    axios.post(`${process.env.REACT_APP_API_URL}/api/register`, { name, email, password })
       .then(result => {
         setSuccess('Registration successful! Redirecting to Quiz...');
         setTimeout(() => {
