@@ -11,14 +11,15 @@ function Signup() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
-  const apiUrl = process.env.REACT_APP_API_URL;
+  const apiUrl = 'https://quiz-app-2-k34l.onrender.com';
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
     setSuccess('');
 
-    axios.post(`${apiUrl}/api/register`, { name, email, password })
+    axios.post('https://quiz-app-2-k34l.onrender.com/api/register', { name, email, password })
       .then(result => {
         setSuccess('Registration successful! Redirecting to Quiz...');
         setTimeout(() => {
