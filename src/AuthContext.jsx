@@ -1,21 +1,20 @@
-// src/context/AuthContext.jsx
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from 'react';//imported react hooks
 
-export const AuthContext = createContext();
+export const AuthContext = createContext();// allows to share authentication state
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }) => {   //allows to wrap with authentication context
   const [user, setUser] = useState(() => {
-    const storedUser = localStorage.getItem('user');
-    return storedUser ? JSON.parse(storedUser) : null;
+    const storedUser = localStorage.getItem('user'); //gets user from local storage 
+    return storedUser ? JSON.parse(storedUser) : null; // parses JSON to object
   });
 
-  useEffect(() => {
+  useEffect(() => { // runs everytime state changes
     if (user) {
-      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('user', JSON.stringify(user)); // if logged stores info
     } else {
-      localStorage.removeItem('user');
+      localStorage.removeItem('user'); //if logout removes
     }
-  }, [user]);
+  }, [user]); // runs when user changes
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>
