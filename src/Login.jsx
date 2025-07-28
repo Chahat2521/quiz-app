@@ -3,29 +3,29 @@ import './App.css';
 import './index.css';
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import { FaEnvelope, FaLock, FaFacebookF, FaTwitter } from "react-icons/fa";
-import { AuthContext } from "./AuthContext"; // ✅ Correct
+import { FaEnvelope, FaLock, FaFacebookF, FaTwitter } from "react-icons/fa"; // to get react icons
+import { AuthContext } from "./AuthContext"; // to manage authentication
 
 
-function Login() {
+function Login() { // for login
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const { setUser } = useContext(AuthContext);
-  const navigate = useNavigate();
- const apiUrl = 'https://quiz-app-2-k34l.onrender.com';
+  const navigate = useNavigate(); //navigation 
+ const apiUrl = 'https://quiz-app-2-k34l.onrender.com'; // main backend render url
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => { // form submission is handled
   e.preventDefault();
   setError('');
   axios.post('https://quiz-app-2-k34l.onrender.com/api/login', { email, password })
     .then(result => {
-      setUser(result.data.user); // ✅ updates AuthContext
-      localStorage.setItem("user", JSON.stringify(result.data.user)); // ✅ store once
-      navigate('/');
+      setUser(result.data.user); // updates AuthContext
+      localStorage.setItem("user", JSON.stringify(result.data.user)); // 
+      navigate('/'); // reaches quiz page after login
     })
-    .catch(err => {
+    .catch(err => { // for error message
       if (err.response?.data?.message) {
         setError(err.response.data.message);
       } else {
@@ -35,7 +35,7 @@ function Login() {
 };
 
 
-  return (
+  return (  // interface 
     <div className="page-container">
       <div className="absolute bottom-0 w-full h-32 bg-gradient-to-r from-blue-300 via-blue-200 to-blue-100 rounded-t-full"></div>
       <div className="page-card">
