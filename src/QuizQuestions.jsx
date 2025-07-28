@@ -1,21 +1,21 @@
 import React, { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import axios from 'axios'; // sends http request and fetches data
+import { useParams, useNavigate } from 'react-router-dom'; // params fetch quiz topic
 import './App.css';
 
-const QuizQuestions = () => {
+const QuizQuestions = () => { // quiz topic layout
   const { topic } = useParams();
   const navigate = useNavigate();
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState([]); //user selected answers
   const [quizEnded, setQuizEnded] = useState(false);
   const [timer, setTimer] = useState(600);
   const intervalRef = useRef(null);
  const apiUrl = 'https://quiz-app-2-k34l.onrender.com';
 
 
- const user = JSON.parse(localStorage.getItem('user')) || {};
+ const user = JSON.parse(localStorage.getItem('user')) || {}; 
    const username = user.name || 'Guest';
 
 
@@ -26,7 +26,7 @@ const QuizQuestions = () => {
       .catch(err => console.error("Error fetching questions", err));
   }, [topic]);
 
-  useEffect(() => {
+  useEffect(() => { //timer 
     if (!quizEnded) {
       intervalRef.current = setInterval(() => {
         setTimer(prev => {
@@ -41,19 +41,19 @@ const QuizQuestions = () => {
     return () => clearInterval(intervalRef.current);
   }, [quizEnded]);
 
-  const handleOptionClick = (answer) => {
+  const handleOptionClick = (answer) => { // saves selected option answers
     const updated = [...selectedOptions];
     updated[currentQuestion] = answer;
     setSelectedOptions(updated);
   };
 
-  const handleNext = () => {
+  const handleNext = () => { // navigate to next question
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(prev => prev + 1);
     }
   };
 
-  const handlePrevious = () => {
+  const handlePrevious = () => { // navigate back to previous question
     if (currentQuestion > 0) {
       setCurrentQuestion(prev => prev - 1);
     }
@@ -63,7 +63,7 @@ const QuizQuestions = () => {
   clearInterval(intervalRef.current);
 
   const calculatedScore = questions.reduce((acc, q, idx) => {
-    return acc + (q.correctAnswer === selectedOptions[idx] ? 1 : 0);
+    return acc + (q.correctAnswer === selectedOptions[idx] ? 1 : 0); // calculates score
   }, 0);
 
   const totalTimeTaken = 600 - timer;
@@ -71,7 +71,7 @@ const QuizQuestions = () => {
   setQuizEnded(true);
 
   try {
- await axios.post(`https://quiz-app-2-k34l.onrender.com/answers/submit`, {
+ await axios.post(`https://quiz-app-2-k34l.onrender.com/answers/submit`, { // submit score at backend with all other data
 
 
    username: username,
@@ -81,16 +81,16 @@ const QuizQuestions = () => {
       timeTaken: totalTimeTaken
     });
 
-    console.log("✅ Submission successful");
+    console.log("✅ Submission successful"); 
   } catch (err) {
-    console.error("❌ Submission failed:", err.response?.data || err.message);
+    console.error("❌ Submission failed:", err.response?.data || err.message); // error if not submitted
   }
 };
 
 
 
 
-  if (!questions.length) return <div className="text-center mt-10 text-xl">Loading questions...</div>;
+  if (!questions.length) return <div className="text-center mt-10 text-xl">Loading questions...</div>; // if question not appeared
 
   const minutes = Math.floor(timer / 60);
   const seconds = timer % 60;
