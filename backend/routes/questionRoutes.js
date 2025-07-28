@@ -6,7 +6,7 @@ const Question = require('../models/Question');
 router.get('/:topic', async (req, res) => {
   try {
     const topic = req.params.topic;
-    const questions = await Question.find({ topic }); // make sure topic field exists in DB
+    const questions = await Question.find({ topic });// topic exists in database
     res.json(questions);
   } catch (error) {
     console.error('Error fetching questions:', error);
