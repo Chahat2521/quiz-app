@@ -1,15 +1,15 @@
-// App.jsx
+// importing react and component from react router
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Signup from "./Signup";
-import Login from "./Login";
-import Quiz from "./Quiz";
-import QuizQuestions from "./QuizQuestions";
-import { AuthProvider } from "./AuthContext"; // ✅ NEW
+import Signup from "./Signup"; //for signup component
+import Login from "./Login"; // for login component
+import Quiz from "./Quiz"; // for quiz component
+import QuizQuestions from "./QuizQuestions"; // for quiz question component
+import { AuthProvider } from "./AuthContext"; //  for authentication
 
 function App() {
-  return (
-    <AuthProvider>
+  return (   // wrapping all components
+    <AuthProvider>  
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Quiz />} />
