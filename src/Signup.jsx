@@ -23,10 +23,10 @@ function Signup() {
       .then(result => {
         setSuccess('Registration successful! Redirecting to Quiz...');
         setTimeout(() => {
-          navigate('/login'); // Redirect to quiz page after signup
+          navigate('/login'); // Redirect to login after signup then to quiz page
         }, 1500);
       })
-      .catch(err => {
+      .catch(err => { // for errors
         if (err.response?.data?.message) {
           setError(err.response.data.message);
         } else {
