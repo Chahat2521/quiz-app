@@ -1,4 +1,4 @@
- /* App.css */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #0f172a; /* dark blue/black */
@@ -41,7 +41,7 @@ button {
     width: 100%;
     padding: 12px 12px 12px 40px;
     border-radius: 9999px; /* full rounded */
-    border: 1px solid #2563eb; /* blue-600 */
+    border: 1px solid #2563eb; 
     color: #cbd5e1; /* light blue-gray */
     background-color: #1e293b; /* dark blue */
     font-weight: 600;
@@ -65,7 +65,7 @@ button {
 .button-primary {
     width: 100%;
     padding: 16px;
-    background-color: #2563eb; /* blue-600 */
+    background-color: #2563eb; 
     color: white;
     font-weight: 800;
     border-radius: 9999px;
@@ -76,18 +76,18 @@ button {
 }
 
 .button-primary:hover {
-    background-color: #1d4ed8; /* blue-700 */
+    background-color: #1d4ed8; 
 }
 
 .message-error {
-    color: #ef4444; /* red-500 */
+    color: #ef4444; 
     font-weight: 600;
     margin-bottom: 1rem;
     text-align: center;
 }
 
 .message-success {
-    color: #22c55e; /* green-500 */
+    color: #22c55e; 
     font-weight: 600;
     margin-bottom: 1rem;
     text-align: center;
@@ -235,7 +235,7 @@ button {
   display: flex;
   justify-content: center;
   gap: 30px;
-  flex-wrap: nowrap; /* ensures all boxes stay in a single row */
+  flex-wrap: nowrap; 
   overflow-x: auto;   /* allows scrolling if screen is small */
   padding: 0 10px;
 }
@@ -327,20 +327,20 @@ button {
 }
 
 .option-box:hover {
-  background-color: #ebf8ff; /* blue-50 */
-  border-color: #93c5fd; /* blue-300 */
-  color: #1e40af; /* blue-900 */
+  background-color: #ebf8ff; 
+  border-color: #93c5fd; 
+  color: #1e40af;
 }
 
 .option-box input[type="radio"] {
   cursor: pointer;
-  accent-color: #2563eb; /* blue-600 */
+  accent-color: #2563eb; 
 }
 
 .option-box.selected {
-  background-color: #2563eb; /* blue-600 */
+  background-color: #2563eb; 
   color: white;
-  border-color: #1e40af; /* blue-900 */
+  border-color: #1e40af; 
   box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.4),
               0 2px 4px -2px rgba(37, 99, 235, 0.4);
 }
