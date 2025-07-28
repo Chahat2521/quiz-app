@@ -1,7 +1,7 @@
 import React, { useEffect, useState,useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./App.css";
-import { AuthContext } from "./AuthContext"; // ✅ Correct
+import { AuthContext } from "./AuthContext"; 
 
 
 
@@ -10,13 +10,13 @@ function Quiz() {
   const { user, setUser } = useContext(AuthContext);
 
 
-  const quizzes = [
+  const quizzes = [ // quiz format 
     { id: "html", title: "HTML Quiz", description: "Test your HTML basics." },
     { id: "css", title: "CSS Quiz", description: "Check your CSS skills." },
     { id: "react", title: "React Quiz", description: "React component mastery." },
   ];
 
-  // ✅ Load user from localStorage on mount
+  //Loads user from localStorage
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) setUser(storedUser);
@@ -26,7 +26,7 @@ function Quiz() {
     if (!user) {
       navigate("/login");
     } else {
-      navigate(`/quiz/${id}`); // ✅ Route should match "/quiz/:topic"
+      navigate(`/quiz/${id}`); //Routee for quiz topic
     }
   };
 
