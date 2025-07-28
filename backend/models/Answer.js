@@ -23,5 +23,5 @@ const answerSchema = new mongoose.Schema({
   },
 });
 
-// 👇 Force collection name to be "answers"
+
 module.exports = mongoose.model("Answer", answerSchema, "answers");
