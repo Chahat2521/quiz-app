@@ -21,5 +21,5 @@ const questionSchema = new mongoose.Schema({
   },
 });
 
-// ✅ Explicitly use "question" collection name
+
 module.exports = mongoose.model('Question', questionSchema, 'question');
