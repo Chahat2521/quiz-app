@@ -3,7 +3,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const Question = require('../models/Question');
 
-// ✅ Correct usage of mongoose.connect with options
+//  mongoose.connect with options
 mongoose.connect(
   'mongodb+srv://chahatchauhan1616:Chahat123@cluster21.ls9c4hd.mongodb.net/quizDB?retryWrites=true&w=majority&appName=Cluster21',
   {
