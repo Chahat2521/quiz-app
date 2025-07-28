@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Answer = require('../models/Answer'); // ✅ import your model
+const Answer = require('../models/Answer'); // importing model
 
 router.post('/submit', async (req, res) => {
   try {
@@ -23,4 +23,4 @@ router.post('/submit', async (req, res) => {
   }
 });
 
-module.exports = router; // ✅ export the router
+module.exports = router; //exporting the router
