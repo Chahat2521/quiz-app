@@ -81,9 +81,9 @@ const QuizQuestions = () => { // quiz topic layout
       timeTaken: totalTimeTaken
     });
 
-    console.log("✅ Submission successful"); 
+    console.log(" Submission successful"); 
   } catch (err) {
-    console.error("❌ Submission failed:", err.response?.data || err.message); // error if not submitted
+    console.error(" Submission failed:", err.response?.data || err.message); // error if not submitted
   }
 };
 
